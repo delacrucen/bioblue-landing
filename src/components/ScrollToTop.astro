@@ -1,0 +1,40 @@
+<a
+  class="bg-teal-700 hover:bg-teal-800 p-3 rounded-lg cursor-pointer invisible z-50 fixed bottom-10 right-10"
+  id="toTop"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="icon icon-tabler icon-tabler-arrow-narrow-up"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="white"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+      d="M12 5l0 14"></path><path d="M16 9l-4 -4"></path><path d="M8 9l4 -4"
+    ></path></svg
+  >
+</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("toTop");
+    window.addEventListener("scroll", function () {
+      if (this.window.scrollY > 300) {
+        button?.classList.remove("invisible");
+      } else {
+        button?.classList.add("invisible");
+      }
+    });
+    // scroll to top
+    button?.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  });
+</script>
