@@ -6,31 +6,39 @@ import Layout from "../layouts/Layout.astro";
   <div
     class="absolute top-0 z-[-2] h-screen w-screen bg-teal-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,.1),rgba(255,255,255,0))]"
   >
-    <div class="content border-2 w-[300] h-[300]">
-      <h1 class="text-7xl font-hind font-bold">BioBlue</h1>
-      <h1 class="text-7xl font-hind font-bold">BioBlue</h1>
+    <div class="bg-red-100 flex items-center justify-center">
+      <div class="content relative">
+        <h2
+          class="text-7xl font-hind font-bold inline-block"
+          aria-label="bioblue"
+        >
+          BioBlue
+        </h2>
+        <h2
+          class="text-7xl font-hind font-bold inline-block"
+          aria-label="bioblue"
+        >
+          BioBlue
+        </h2>
+      </div>
     </div>
   </div>
 </Layout>
 
 <style>
-  .content {
-    position: relative;
+  .content h2 {
   }
 
-  .content h1 {
-    font-size: 8em;
-    position: absolute;
-  }
-
-  .content h1:nth-child(1) {
+  .content h2:nth-child(1) {
     color: transparent;
     -webkit-text-stroke: 2px #5eead4;
   }
 
-  .content h1:nth-child(2) {
+  .content h2:nth-child(2) {
     color: #5eead4;
     animation: animate 4s ease-in-out infinite;
+    position: absolute;
+    transform: translate(-100%);
   }
 
   @keyframes animate {
