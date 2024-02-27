@@ -23,6 +23,7 @@ export default {
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
+        roboto: ["roboto", "sans-serif"],
       },
     },
   },
