@@ -4,23 +4,32 @@ import WavyText from "@components/WavyText.astro";
 
 <section class="mb-12">
   <div
-    class="inset-0 -z-10 h-full w-full bg-[#ffffff] [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#14b8a6_100%)]"
+    class="absolute inset-0 -z-10 h-[100vh] w-full bg-[#ffffff] [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#14b8a6_100%)] sectionbg-transition"
+    id="sectionbg"
   >
-    <div
-      class="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 md:px-8 h-[95vh]"
-    >
-      <div class="space-y-5 max-w-4xl mx-auto text-center">
-        <h1
-          class="font-inter text-4xl font-extrabold tracking-tight mx-auto md:text-6xl bg-gradient-to-r from-teal-700 via-teal-400 to-teal-700 text-transparent bg-clip-text"
-        >
-          Automatizá tu acuicultura con
-        </h1>
+  </div>
+
+  <div
+    class="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 md:px-8 h-[95vh]"
+  >
+    <div class="space-y-5 max-w-4xl mx-auto text-center">
+      <h1
+        class="font-inter text-4xl font-extrabold tracking-tight mx-auto md:text-6xl bg-gradient-to-r from-teal-700 via-teal-400 to-teal-700 text-transparent bg-clip-text heading-transition"
+        id="heading"
+      >
+        Automatizá tu acuicultura con
+      </h1>
+      <div class="bioblue-transition" id="bioblue">
         <WavyText text="BioBlue" />
-        <p class="max-w-2xl mx-auto md:pt-12 md:text-xl">
-          Transforma tus operaciones con nuestra plataforma tecnológica líder en
-          el sector, impulsada por la innovación y la sostenibilidad.
-        </p>
-        <!-- <div
+      </div>
+      <p
+        class="max-w-2xl mx-auto md:pt-12 md:text-xl subheading-transition"
+        id="subheading"
+      >
+        Transforma tus operaciones con nuestra plataforma tecnológica líder en
+        el sector, impulsada por la innovación y la sostenibilidad.
+      </p>
+      <!-- <div
           class="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0"
         >
           <a
@@ -36,14 +45,86 @@ import WavyText from "@components/WavyText.astro";
             Get access
           </a>
         </div> -->
-      </div>
-      <div class="mt-14 overflow-hidden h-[60%] drop-shadow-2xl">
-        <img
-          src="dashboard.png"
-          class="w-full shadow-lg rounded-lg border"
-          alt="Sistema BioBlue"
-        />
-      </div>
+    </div>
+    <div
+      class="mt-14 overflow-hidden h-[65%] drop-shadow-2xl heroimg-transition"
+      id="heroimg"
+    >
+      <img
+        src="dashboard.png"
+        class="w-full shadow-lg rounded-lg border"
+        alt="Sistema BioBlue"
+      />
     </div>
   </div>
 </section>
+
+<style>
+  /* Custom styles for transition */
+  .heading-transition {
+    transition: all 0.5s ease;
+    transition-delay: 0.3s;
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  .heading-transition.loaded {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+
+  .bioblue-transition {
+    transition: all 0.5s ease;
+    transition-delay: 0.5s;
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  .bioblue-transition.loaded {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+
+  .subheading-transition {
+    transition: all 0.5s ease;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+    opacity: 0;
+  }
+
+  .subheading-transition.loaded {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+
+  .heroimg-transition {
+    transition: all 0.5s ease;
+    transition-delay: 1s;
+    opacity: 0;
+  }
+  .heroimg-transition.loaded {
+    opacity: 1;
+  }
+  .sectionbg-transition {
+    transition: all 2s ease;
+    opacity: 0;
+  }
+  .sectionbg-transition.loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heading = document.getElementById("heading");
+    const bioblue = document.getElementById("bioblue");
+    const subheading = document.getElementById("subheading");
+    const heroimg = document.getElementById("heroimg");
+    const sectionbg = document.getElementById("sectionbg");
+    heading?.classList.add("loaded");
+    bioblue?.classList.add("loaded");
+    subheading?.classList.add("loaded");
+    heroimg?.classList.add("loaded");
+    sectionbg?.classList.add("loaded");
+  });
+</script>
