@@ -25,8 +25,15 @@ const { text } = Astro.props;
 </nav>
 
 <style>
+  .content {
+    position: relative;
+  }
   .content h2 {
     color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%);
   }
 
   .content h2:nth-child(1) {
@@ -36,8 +43,6 @@ const { text } = Astro.props;
   .content h2:nth-child(2) {
     color: #0ea5e9;
     animation: animate 4s ease-in-out infinite;
-    position: absolute;
-    transform: translate(-100%);
   }
 
   /* Fallback for browsers that don't support -webkit-text-stroke */
