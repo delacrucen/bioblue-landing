@@ -23,7 +23,6 @@ export default {
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        hind: ["Hind Siliguri", "sans-serif"],
       },
     },
   },
