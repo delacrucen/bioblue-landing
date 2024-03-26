@@ -1,0 +1,101 @@
+---
+const date = new Date();
+import { interval } from "./utils/dashboard.utils";
+---
+
+<div>
+  <div class="flex h-screen overflow-y-hidden bg-white">
+    <div class="flex flex-col flex-1 h-full overflow-hidden">
+      <!-- Navbar -->
+      <header class="flex-shrink-0 border-b">
+        <div class="flex items-center justify-between p-2">
+          <!-- Navbar left -->
+          <div class="flex items-center space-x-3">
+            <span
+              class="p-2 text-2xl bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-transparent bg-clip-text font-extrabold flex justify-center items-center gap-2"
+              >BioBlue <span
+                class="text-xs rounded-md bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white px-2 py-1 font-semibold"
+                >DEMO</span
+              ></span
+            >
+          </div>
+
+          <!-- Navbar right -->
+          <div class="relative flex items-center space-x-3 gap-4">
+            <!-- <p>Actualización en 5...</p> -->
+            <a
+              href="/login"
+              class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-logout"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+                ></path><path d="M9 12h12l-3 -3"></path><path d="M18 15l3 -3"
+                ></path></svg
+              >Salir</a
+            >
+          </div>
+        </div>
+        <!-- Main content -->
+        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
+          <!-- Main content header -->
+          <div
+            class="flex flex-col items-start justify-between pb-6 space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+          >
+            <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
+          </div>
+
+          <!-- Start Content -->
+          <div
+            class="grid gap-5 mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+          >
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Oxigenación</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">95</span>%
+              </p>
+            </div>
+            <div class="bg-red-50">asd</div>
+            <div class="bg-red-50">asd</div>
+            <div class="bg-red-50">asd</div>
+          </div>
+        </main>
+        <!-- Main footer -->
+        <footer
+          class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14"
+        >
+          <div>BioBlue &copy; {date.getFullYear()}</div>
+        </footer>
+      </header>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js"
+  defer></script>
+<script>
+  const setup = () => {
+    return {
+      loading: true,
+      isSidebarOpen: false,
+      toggleSidbarMenu() {
+        this.isSidebarOpen = !this.isSidebarOpen;
+      },
+      isSettingsPanelOpen: false,
+      isSearchBoxOpen: false,
+    };
+  };
+  const oxygen = document.getElementById("oxygen");
+</script>
