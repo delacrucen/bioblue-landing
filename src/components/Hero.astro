@@ -2,7 +2,7 @@
 import WavyText from "@components/WavyText.astro";
 ---
 
-<section class="mb-12">
+<section class="relative">
   <div
     class="absolute inset-0 -z-10 h-[100vh] w-full bg-[#ffffff] [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#0ea5e9_100%)] sectionbg-transition"
     id="sectionbg"
@@ -10,7 +10,7 @@ import WavyText from "@components/WavyText.astro";
   </div>
 
   <div
-    class="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 md:px-8 h-[95vh]"
+    class="max-w-screen-xl mx-auto px-4 py-14 gap-12 text-gray-600 md:px-8 h-[95vh] overflow-hidden"
   >
     <div class="space-y-5 max-w-4xl mx-auto text-center">
       <h1
@@ -29,6 +29,13 @@ import WavyText from "@components/WavyText.astro";
         Transforma tus operaciones con nuestra plataforma tecnológica líder en
         el sector, impulsada por la innovación y la sostenibilidad.
       </p>
+      <a
+        class="sm:w-auto py-4 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-sky-500 text-white hover:opacity-90 md:text-lg button-transition"
+        href="#"
+        id="button"
+      >
+        Probar demo
+      </a>
     </div>
     <div
       class="mt-14 overflow-hidden h-[65%] drop-shadow-2xl heroimg-transition"
@@ -81,9 +88,21 @@ import WavyText from "@components/WavyText.astro";
     opacity: 1;
   }
 
+  .button-transition {
+    transition: all 0.5s ease;
+    transform: translateY(0);
+    transition-delay: 1s;
+    opacity: 0;
+  }
+
+  .button-transition.loaded {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+
   .heroimg-transition {
     transition: all 0.5s ease;
-    transition-delay: 1s;
+    transition-delay: 1.2s;
     opacity: 0;
   }
   .heroimg-transition.loaded {
@@ -103,11 +122,13 @@ import WavyText from "@components/WavyText.astro";
     const heading = document.getElementById("heading");
     const bioblue = document.getElementById("bioblue");
     const subheading = document.getElementById("subheading");
+    const button = document.getElementById("button");
     const heroimg = document.getElementById("heroimg");
     const sectionbg = document.getElementById("sectionbg");
     heading?.classList.add("loaded");
     bioblue?.classList.add("loaded");
     subheading?.classList.add("loaded");
+    button?.classList.add("loaded");
     heroimg?.classList.add("loaded");
     sectionbg?.classList.add("loaded");
   });
