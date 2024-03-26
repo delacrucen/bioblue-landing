@@ -90,11 +90,19 @@
 </section>
 
 <script>
-  const buttonClass = ["cursor-not-allowed", "bg-gray-700"];
+  const buttonClassAdd = ["cursor-not-allowed", "bg-gray-500"];
+  const buttonClassRemove = [
+    "bg-gradient-to-r",
+    "from-sky-700",
+    "via-sky-500",
+    "to-sky-700",
+    "hover:opacity-90",
+  ];
   const buttonLogin = document.getElementById("buttonLogin");
   const spinner = document.getElementById("spinner");
   buttonLogin?.addEventListener("click", () => {
-    buttonLogin?.classList.add(...buttonClass);
+    buttonLogin?.classList.add(...buttonClassAdd);
+    buttonLogin?.classList.remove(...buttonClassRemove);
     spinner?.classList.remove(`hidden`);
     setTimeout(() => {
       window.location.href = "/panel";
