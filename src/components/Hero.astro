@@ -30,22 +30,15 @@ import WavyText from "@components/WavyText.astro";
         el sector, impulsada por la innovación y la sostenibilidad.
       </p>
       <a
-        class="sm:w-auto py-4 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-sky-500 text-white hover:opacity-90 md:text-lg button-transition"
-        href="#"
+        class="sm:w-auto py-4 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-sky-500 text-white hover:opacity-90 md:text-lg transition-all button-transition"
+        href="/login"
         id="button"
       >
         Probar demo
       </a>
     </div>
-    <div
-      class="mt-14 overflow-hidden h-[65%] drop-shadow-2xl heroimg-transition"
-      id="heroimg"
-    >
-      <img
-        src="dashboard.png"
-        class="w-full shadow-lg rounded-lg border"
-        alt="Sistema BioBlue"
-      />
+    <div class="mt-14 overflow-hidden h-[65%] heroimg-transition" id="heroimg">
+      <img src="dashboard.png" class="w-full" alt="Sistema BioBlue" />
     </div>
   </div>
 </section>
@@ -90,13 +83,11 @@ import WavyText from "@components/WavyText.astro";
 
   .button-transition {
     transition: all 0.5s ease;
-    transform: translateY(0);
     transition-delay: 1s;
     opacity: 0;
   }
 
   .button-transition.loaded {
-    transform: translateY(-15px);
     opacity: 1;
   }
 
@@ -131,5 +122,9 @@ import WavyText from "@components/WavyText.astro";
     button?.classList.add("loaded");
     heroimg?.classList.add("loaded");
     sectionbg?.classList.add("loaded");
+    setTimeout(() => {
+      button?.classList.remove("button-transition");
+      button?.classList.remove("loaded");
+    }, 1300);
   });
 </script>
