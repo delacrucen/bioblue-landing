@@ -58,6 +58,16 @@ import ApexCharts from "apexcharts";
     <!-- Start Content -->
     <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Crustáceos disponibles</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span class="mr-2" id="crustaceos">...</span><span class="text-3xl"
+            >uni</span
+          >
+        </p>
+      </div>
+      <div
         class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative"
       >
         <p class="text-xl font-medium">Oxigenación</p>
@@ -82,23 +92,18 @@ import ApexCharts from "apexcharts";
       >
         <p class="text-xl font-medium">H2O</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">95</span><span class="text-3xl">m³</span>
+          <span class="mr-2" id="h2o">...</span><span class="text-3xl">m³</span>
         </p>
       </div>
-      <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-      >
-        <p class="text-xl font-medium">Crustáceos disponibles</p>
-        <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">14</span><span class="text-3xl">u</span>
-        </p>
-      </div>
+
       <div
         class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
       >
         <p class="text-xl font-medium">Biofloc</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">95</span><span class="text-3xl">m²</span>
+          <span class="mr-2" id="biofloc">...</span><span class="text-3xl"
+            >m³</span
+          >
         </p>
       </div>
       <div
@@ -106,7 +111,7 @@ import ApexCharts from "apexcharts";
       >
         <p class="text-xl font-medium">Conteo de días</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="day"></span>
+          <span id="day">...</span>
         </p>
       </div>
     </div>
@@ -165,9 +170,11 @@ import ApexCharts from "apexcharts";
   const salinityElement = document.getElementById("salinity");
   const dayElement = document.getElementById("day");
   const updateSpan = document.getElementById("updateSpan");
+  const h2oElement = document.getElementById("h2o");
+  const crustaceosElement = document.getElementById("crustaceos");
+  const bioflocElement = document.getElementById("biofloc");
 
-  if (dayElement) dayElement.textContent = String(dayCount);
-  //5 seconds countdown
+  //countdown
   let count = 5;
   const interval = setInterval(() => {
     if (count > 0) {
@@ -181,17 +188,20 @@ import ApexCharts from "apexcharts";
       // 5 secs
       const oxygenCurrent = generate(90, 10);
       const salinityCurrent = generate(30, 10);
+      const h2oCurrent = generate(120, 10);
+      const bioflocCurrent = generate(100, 10);
 
-      if (oxygen) oxygen.textContent = `${Number(oxygenCurrent)}`;
-      if (salinityElement)
-        salinityElement.textContent = `${Number(salinityCurrent)}`;
-
-      // console.log("Countdown finished, restarting...");
+      if (crustaceosElement) crustaceosElement.textContent = "14";
+      if (oxygen) oxygen.textContent = `${oxygenCurrent}`;
+      if (salinityElement) salinityElement.textContent = `${salinityCurrent}`;
+      if (h2oElement) h2oElement.textContent = `${h2oCurrent}`;
+      if (bioflocElement) bioflocElement.textContent = `${bioflocCurrent}`;
+      if (dayElement) dayElement.textContent = `${dayCount}`;
       if (updateSpan) {
         updateSpan.textContent = `Actualizado`;
         updateSpan?.classList.add("text-green-600");
       }
-      count = 5; // Reset the count to 5
+      count = 5;
     }
   }, 1000);
   // firstChart
@@ -209,7 +219,7 @@ import ApexCharts from "apexcharts";
       categories: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
     },
   };
-
+  // secondChart
   let options2 = {
     chart: {
       type: "bar",
@@ -230,4 +240,14 @@ import ApexCharts from "apexcharts";
 
   chart1.render();
   chart2.render();
+
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.keyCode === 123 ||
+      (event.ctrlKey && event.shiftKey && event.keyCode === 73)
+    ) {
+      event.preventDefault();
+    }
+  });
 </script>
