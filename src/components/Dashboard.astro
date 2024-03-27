@@ -6,7 +6,7 @@ import ApexCharts from "apexcharts";
 
 <div class="flex flex-col h-screen">
   <!-- Navbar -->
-  <header class="sticky top-0 z-10 bg-white shadow">
+  <header class="sticky top-0 z-10 bg-sky-50 shadow">
     <div class="flex items-center justify-between p-2 border-b">
       <!-- Navbar left -->
       <div class="flex items-center space-x-3">
@@ -49,17 +49,16 @@ import ApexCharts from "apexcharts";
   <main class="flex-1 overflow-y-auto p-3">
     <!-- Main content header -->
     <div
-      class="flex flex-col items-start justify-between space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+      class="text-base md:text-xl flex md:justify-between md:flex-row flex-col py-2"
     >
-      <p class="text-xl font-bold">
-        {formatDate(date)}
-      </p>
+      <span class="font-bold">{formatDate(date)}</span>
+      <span class="font-light tracking-tight">Tanque Principal</span>
     </div>
 
     <!-- Start Content -->
     <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative"
       >
         <p class="text-xl font-medium">Oxigenación</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -71,13 +70,13 @@ import ApexCharts from "apexcharts";
       >
         <p class="text-xl font-medium">Salinidad</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">95</span><span class="text-3xl">%</span>
+          <span id="salinity">95</span><span class="text-3xl">ppt</span>
         </p>
       </div>
       <div
         class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
       >
-        <p class="text-xl font-medium">Agua</p>
+        <p class="text-xl font-medium">H2O</p>
         <p class="absolute bottom-5 right-5 text-7xl">
           <span id="oxygen">95</span><span class="text-3xl">m³</span>
         </p>
@@ -85,17 +84,9 @@ import ApexCharts from "apexcharts";
       <div
         class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
       >
-        <p class="text-xl font-medium">Crustáceos (unidad)</p>
+        <p class="text-xl font-medium">Crustáceos disponibles</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">14</span>
-        </p>
-      </div>
-      <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-      >
-        <p class="text-xl font-medium">Días</p>
-        <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">21</span>
+          <span id="oxygen">14</span><span class="text-3xl">u</span>
         </p>
       </div>
       <div
@@ -106,20 +97,28 @@ import ApexCharts from "apexcharts";
           <span id="oxygen">95</span><span class="text-3xl">m²</span>
         </p>
       </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Conteo de días</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="day"></span>
+        </p>
+      </div>
     </div>
     <!-- GRAPH CONTAINER -->
-    <div class="grid grid-cols-2 grid-rows-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
       <!--  GRAPH 1 -->
-      <div class="flex flex-col justify-center items-center text-xl">
-        Oxigenación
+      <div class="flex flex-col justify-center items-center text-xl gap-5">
+        Oxigenación semanal
         <div id="firstChart" class="w-full h-full"></div>
       </div>
       <!--  END GRAPH 1 -->
 
       <!--  GRAPH 2 -->
-      <div class="flex flex-col justify-center items-center text-xl">
-        Graph name
-        <canvas id="second-chart"></canvas>
+      <div class="flex flex-col justify-center items-center text-xl gap-5">
+        Salinidad semanal
+        <div id="secondChart" class="w-full h-full"></div>
       </div>
       <!--  END GRAPH 2 -->
     </div>
@@ -128,7 +127,7 @@ import ApexCharts from "apexcharts";
 
   <!-- Main footer -->
   <footer
-    class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 w-full text-gray-600"
+    class="flex items-center justify-between flex-shrink-0 p-4 max-h-14 w-full text-gray-600 bg-sky-50 border-t"
   >
     <span class="flex justify-center items-center gap-2">
       <svg
@@ -154,15 +153,16 @@ import ApexCharts from "apexcharts";
   import { generate } from "src/utils/dashboard.utils";
   import { getDayCount } from "src/utils/dashboard.utils";
 
-  const firstChart = document.getElementById("first-chart");
-  const secondChart = document.getElementById("second-chart");
-  const startDate = new Date("2024-03-01");
+  const startDate = new Date("2024-02-01");
   const dayCount = getDayCount(startDate);
 
   //text elements
   const oxygen = document.getElementById("oxygen");
+  const salinity = document.getElementById("salinity");
+  const dayElement = document.getElementById("day");
   const updateSpan = document.getElementById("updateSpan");
 
+  if (dayElement) dayElement.textContent = String(dayCount);
   //5 seconds countdown
   let count = 5;
   const interval = setInterval(() => {
@@ -175,8 +175,10 @@ import ApexCharts from "apexcharts";
       count--;
     } else {
       // 5 secs
-      const randomNumber = generate(90, 10);
-      if (oxygen) oxygen.textContent = `${Number(randomNumber)}`;
+      const oxygenCurrent = generate(90, 10);
+
+      if (oxygen) oxygen.textContent = `${Number(oxygenCurrent)}`;
+
       console.log("Countdown finished, restarting...");
       if (updateSpan) {
         updateSpan.textContent = `Actualizado`;
@@ -186,9 +188,9 @@ import ApexCharts from "apexcharts";
     }
   }, 1000);
   // firstChart
-  var options = {
+  let options1 = {
     chart: {
-      type: "line",
+      type: "area",
     },
     series: [
       {
@@ -197,19 +199,28 @@ import ApexCharts from "apexcharts";
       },
     ],
     xaxis: {
-      categories: [
-        "Domingo",
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado",
-      ],
+      categories: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
     },
   };
 
-  let chart = new ApexCharts(document.querySelector("#firstChart"), options);
+  let options2 = {
+    chart: {
+      type: "bar",
+    },
+    series: [
+      {
+        name: "% diario",
+        data: [35, 33, 36, 31, 38, 34, 32],
+      },
+    ],
+    xaxis: {
+      categories: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+    },
+  };
 
-  chart.render();
+  let chart1 = new ApexCharts(document.querySelector("#firstChart"), options1);
+  let chart2 = new ApexCharts(document.querySelector("#secondChart"), options2);
+
+  chart1.render();
+  chart2.render();
 </script>
