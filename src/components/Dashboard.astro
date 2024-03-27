@@ -48,11 +48,15 @@ import ApexCharts from "apexcharts";
   <!-- Main content -->
   <main class="flex-1 overflow-y-auto p-3">
     <!-- Main content header -->
-    <div
-      class="text-base md:text-xl flex md:justify-between md:flex-row flex-col py-2"
-    >
-      <span class="font-bold">{formatDate(date)}</span>
-      <span class="font-light tracking-tight">Tanque Principal</span>
+    <div class="flex md:justify-between md:flex-row flex-col py-2 items-center">
+      <span class="font-bold text-base md:text-xl">{formatDate(date)}</span>
+      <div class="flex flex-col justify-end items-end">
+        <span class="font-bold text-base md:text-xl"
+          >Día<span class="ml-1" id="day">...</span></span
+        >
+        <span class="font-light tracking-tight text-base">Tanque Principal</span
+        >
+      </div>
     </div>
 
     <!-- Start Content -->
@@ -60,7 +64,7 @@ import ApexCharts from "apexcharts";
       <div
         class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
       >
-        <p class="text-xl font-medium">Crustáceos disponibles</p>
+        <p class="text-xl font-medium">Crustáceos</p>
         <p class="absolute bottom-5 right-5 text-7xl">
           <span class="mr-2" id="crustaceos">...</span><span class="text-3xl"
             >uni</span
@@ -109,9 +113,11 @@ import ApexCharts from "apexcharts";
       <div
         class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
       >
-        <p class="text-xl font-medium">Conteo de días</p>
+        <p class="text-xl font-medium">Plancton</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="day">...</span>
+          <span class="mr-2" id="plancton">...</span><span class="text-3xl"
+            >m³</span
+          >
         </p>
       </div>
     </div>
@@ -173,6 +179,7 @@ import ApexCharts from "apexcharts";
   const h2oElement = document.getElementById("h2o");
   const crustaceosElement = document.getElementById("crustaceos");
   const bioflocElement = document.getElementById("biofloc");
+  const planctonElement = document.getElementById("plancton");
 
   //countdown
   let count = 5;
@@ -190,12 +197,14 @@ import ApexCharts from "apexcharts";
       const salinityCurrent = generate(30, 10);
       const h2oCurrent = generate(120, 3);
       const bioflocCurrent = generate(50, 3);
+      const planctonCurrent = generate(20, 2);
 
       if (crustaceosElement) crustaceosElement.textContent = "14";
       if (oxygen) oxygen.textContent = `${oxygenCurrent}`;
       if (salinityElement) salinityElement.textContent = `${salinityCurrent}`;
       if (h2oElement) h2oElement.textContent = `${h2oCurrent}`;
       if (bioflocElement) bioflocElement.textContent = `${bioflocCurrent}`;
+      if (planctonElement) planctonElement.textContent = `${planctonCurrent}`;
       if (dayElement) dayElement.textContent = `${dayCount}`;
       if (updateSpan) {
         updateSpan.textContent = `Actualizado`;
