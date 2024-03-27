@@ -4,11 +4,11 @@ import { formatDate } from "src/utils/dashboard.utils";
 ---
 
 <div>
-  <div class="flex h-screen overflow-y-hidden bg-white">
-    <div class="flex flex-col flex-1 h-full overflow-hidden">
+  <div class="flex h-screen bg-white">
+    <div class="flex flex-col flex-1 h-full">
       <!-- Navbar -->
-      <header class="flex-shrink-0 border-b">
-        <div class="flex items-center justify-between p-2">
+      <header class="sticky">
+        <div class="flex items-center justify-between p-2 border-b">
           <!-- Navbar left -->
           <div class="flex items-center space-x-3">
             <span
@@ -44,101 +44,119 @@ import { formatDate } from "src/utils/dashboard.utils";
             >
           </div>
         </div>
-        <!-- Main content -->
-        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
-          <!-- Main content header -->
+      </header>
+      <!-- Main content -->
+      <main class="flex-1 max-h-full p-3">
+        <!-- Main content header -->
+        <div
+          class="flex flex-col items-start justify-between space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+        >
+          <p class="text-xl font-bold">
+            {formatDate(date)}
+          </p>
+        </div>
+
+        <!-- Start Content -->
+        <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           <div
-            class="flex flex-col items-start justify-between pb-6 space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
           >
-            <p class="text-lg font-bold">
-              {formatDate(date)}
+            <p class="text-xl font-medium">Oxigenación</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">95</span><span class="text-3xl">%</span>
             </p>
           </div>
-
-          <!-- Start Content -->
           <div
-            class="grid gap-5 mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
           >
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Oxigenación</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">95</span>%
-              </p>
-            </div>
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Salinidad</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">95</span>%
-              </p>
-            </div>
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Agua (por m3)</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">95</span>%
-              </p>
-            </div>
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Crustáceos (unidad)</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">14</span>
-              </p>
-            </div>
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Días</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">21</span>
-              </p>
-            </div>
-            <div
-              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-            >
-              <p class="text-xl font-medium">Biofloc (por m2)</p>
-              <p class="absolute bottom-5 right-5 text-7xl">
-                <span id="oxygen">95</span>
-              </p>
-            </div>
+            <p class="text-xl font-medium">Salinidad</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">95</span><span class="text-3xl">%</span>
+            </p>
           </div>
-        </main>
-        <!-- Main footer -->
-        <footer
-          class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 absolute bottom-0 w-full text-gray-600"
-        >
-          <span class="flex justify-center items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="animate-spin w-6 h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-rotate-clockwise"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"></path></svg
-            ><span id="updateSpan"></span></span
+          <div
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
           >
-          <div>BioBlue &copy; {date.getFullYear()}</div>
-        </footer>
-      </header>
+            <p class="text-xl font-medium">Agua</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">95</span><span class="text-3xl">m³</span>
+            </p>
+          </div>
+          <div
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+          >
+            <p class="text-xl font-medium">Crustáceos (unidad)</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">14</span>
+            </p>
+          </div>
+          <div
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+          >
+            <p class="text-xl font-medium">Días</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">21</span>
+            </p>
+          </div>
+          <div
+            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+          >
+            <p class="text-xl font-medium">Biofloc</p>
+            <p class="absolute bottom-5 right-5 text-7xl">
+              <span id="oxygen">95</span><span class="text-3xl">m²</span>
+            </p>
+          </div>
+        </div>
+        <!-- GRAPH CONTAINER -->
+        <div class="grid grid-cols-2 gap-6">
+          <!--  GRAPH 1 -->
+          <div class="flex flex-col justify-center items-center text-xl">
+            Oxigenación
+            <canvas id="first-chart"></canvas>
+          </div>
+          <!--  END GRAPH 1 -->
+
+          <!--  GRAPH 2 -->
+          <div class="flex flex-col justify-center items-center text-xl">
+            Graph name
+            <canvas id="second-chart"></canvas>
+          </div>
+          <!--  END GRAPH 2 -->
+        </div>
+        <!-- ENDGRAPH CONTAINER -->
+      </main>
+      <!-- Main footer -->
+      <footer
+        class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 w-full text-gray-600"
+      >
+        <span class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="animate-spin w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-rotate-clockwise"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"></path></svg
+          ><span id="updateSpan"></span></span
+        >
+        <div>BioBlue &copy; {date.getFullYear()}</div>
+      </footer>
     </div>
   </div>
 </div>
 
+<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   import { generate } from "src/utils/dashboard.utils";
   import { getDayCount } from "src/utils/dashboard.utils";
 
+  const firstChart = document.getElementById("first-chart");
+  const secondChart = document.getElementById("second-chart");
   const startDate = new Date("2024-03-01");
   const dayCount = getDayCount(startDate);
 
@@ -168,4 +186,54 @@ import { formatDate } from "src/utils/dashboard.utils";
       count = 5; // Reset the count to 5
     }
   }, 1000);
+  // firstChart
+  new Chart(firstChart, {
+    type: "line",
+    data: {
+      labels: [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+      ],
+      datasets: [
+        {
+          label: "% diario",
+          data: [95, 96, 96, 97, 98, 97, 97],
+          borderWidth: 3,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false,
+        },
+      },
+    },
+  });
+  // secondChart
+  new Chart(secondChart, {
+    type: "bar",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 </script>
