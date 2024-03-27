@@ -20,7 +20,9 @@ import ApexCharts from "apexcharts";
       </div>
 
       <!-- Navbar right -->
-      <div class="relative flex items-center space-x-3 gap-4">
+      <div
+        class="relative hover:border-sky-500 flex items-center space-x-3 gap-4"
+      >
         <a
           href="/login"
           class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100 mr-1"
@@ -48,7 +50,7 @@ import ApexCharts from "apexcharts";
   <!-- Main content -->
   <main class="flex-1 overflow-y-auto p-3">
     <!-- Main content header -->
-    <div class="flex md:justify-between md:flex-row flex-col py-2 items-center">
+    <div class="flex justify-between flex-row py-2">
       <span class="font-bold text-base md:text-xl">{formatDate(date)}</span>
       <div class="flex flex-col justify-end items-end">
         <span class="font-bold text-base md:text-xl"
@@ -62,7 +64,7 @@ import ApexCharts from "apexcharts";
     <!-- Start Content -->
     <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">Crustáceos</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -72,7 +74,7 @@ import ApexCharts from "apexcharts";
         </p>
       </div>
       <div
-        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">Oxigenación</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -82,7 +84,7 @@ import ApexCharts from "apexcharts";
         </p>
       </div>
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">Salinidad</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -92,7 +94,7 @@ import ApexCharts from "apexcharts";
         </p>
       </div>
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">H2O</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -101,7 +103,7 @@ import ApexCharts from "apexcharts";
       </div>
 
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">Biofloc</p>
         <p class="absolute bottom-5 right-5 text-7xl">
@@ -111,7 +113,7 @@ import ApexCharts from "apexcharts";
         </p>
       </div>
       <div
-        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+        class="rounded-md border h-48 p-4 md:hover:scale-[1.03] transition-all relative hover:border-sky-500"
       >
         <p class="text-xl font-medium">Plancton</p>
         <p class="absolute bottom-5 right-5 text-7xl">
