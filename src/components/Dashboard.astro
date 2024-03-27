@@ -62,7 +62,9 @@ import ApexCharts from "apexcharts";
       >
         <p class="text-xl font-medium">Oxigenación</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="oxygen">95</span><span class="text-3xl">%</span>
+          <span class="mr-2" id="oxygen">...</span><span class="text-3xl"
+            >%</span
+          >
         </p>
       </div>
       <div
@@ -70,7 +72,9 @@ import ApexCharts from "apexcharts";
       >
         <p class="text-xl font-medium">Salinidad</p>
         <p class="absolute bottom-5 right-5 text-7xl">
-          <span id="salinity">95</span><span class="text-3xl">ppt</span>
+          <span class="mr-2" id="salinity">...</span><span class="text-3xl"
+            >ppt</span
+          >
         </p>
       </div>
       <div
@@ -110,14 +114,14 @@ import ApexCharts from "apexcharts";
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
       <!--  GRAPH 1 -->
       <div class="flex flex-col justify-center items-center text-xl gap-5">
-        Oxigenación semanal
+        % de Oxigenación semanal
         <div id="firstChart" class="w-full h-full"></div>
       </div>
       <!--  END GRAPH 1 -->
 
       <!--  GRAPH 2 -->
       <div class="flex flex-col justify-center items-center text-xl gap-5">
-        Salinidad semanal
+        % de Salinidad semanal
         <div id="secondChart" class="w-full h-full"></div>
       </div>
       <!--  END GRAPH 2 -->
@@ -158,7 +162,7 @@ import ApexCharts from "apexcharts";
 
   //text elements
   const oxygen = document.getElementById("oxygen");
-  const salinity = document.getElementById("salinity");
+  const salinityElement = document.getElementById("salinity");
   const dayElement = document.getElementById("day");
   const updateSpan = document.getElementById("updateSpan");
 
@@ -176,10 +180,13 @@ import ApexCharts from "apexcharts";
     } else {
       // 5 secs
       const oxygenCurrent = generate(90, 10);
+      const salinityCurrent = generate(30, 10);
 
       if (oxygen) oxygen.textContent = `${Number(oxygenCurrent)}`;
+      if (salinityElement)
+        salinityElement.textContent = `${Number(salinityCurrent)}`;
 
-      console.log("Countdown finished, restarting...");
+      // console.log("Countdown finished, restarting...");
       if (updateSpan) {
         updateSpan.textContent = `Actualizado`;
         updateSpan?.classList.add("text-green-600");
