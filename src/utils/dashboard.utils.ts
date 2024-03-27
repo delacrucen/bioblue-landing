@@ -11,3 +11,35 @@ export function getDayCount(startDate: Date): number {
   const elapsedDays = Math.floor(elapsedMilliseconds / millisecondsPerDay);
   return elapsedDays;
 }
+
+export function formatDate(date: Date): string {
+  const daysOfWeek = [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  const dayOfMonth = date.getDate();
+  const month = months[date.getMonth()];
+
+  return `${dayOfWeek}, ${dayOfMonth} de ${month}`;
+}
