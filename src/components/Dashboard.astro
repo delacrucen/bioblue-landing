@@ -1,156 +1,155 @@
 ---
 const date = new Date();
 import { formatDate } from "src/utils/dashboard.utils";
+import ApexCharts from "apexcharts";
 ---
 
-<div>
-  <div class="flex h-screen bg-white">
-    <div class="flex flex-col flex-1 h-full">
-      <!-- Navbar -->
-      <header class="sticky">
-        <div class="flex items-center justify-between p-2 border-b">
-          <!-- Navbar left -->
-          <div class="flex items-center space-x-3">
-            <span
-              class="p-2 text-2xl bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-transparent bg-clip-text font-extrabold flex justify-center items-center gap-2"
-              >BioBlue <span
-                class="text-xs rounded-md bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white px-2 py-1 font-semibold"
-                >DEMO</span
-              ></span
-            >
-          </div>
-
-          <!-- Navbar right -->
-          <div class="relative flex items-center space-x-3 gap-4">
-            <a
-              href="/login"
-              class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100 mr-1"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-logout"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
-                ></path><path d="M9 12h12l-3 -3"></path><path d="M18 15l3 -3"
-                ></path></svg
-              >Salir</a
-            >
-          </div>
-        </div>
-      </header>
-      <!-- Main content -->
-      <main class="flex-1 max-h-full p-3">
-        <!-- Main content header -->
-        <div
-          class="flex flex-col items-start justify-between space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+<div class="flex flex-col h-screen">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-10 bg-white shadow">
+    <div class="flex items-center justify-between p-2 border-b">
+      <!-- Navbar left -->
+      <div class="flex items-center space-x-3">
+        <span
+          class="p-2 text-2xl bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-transparent bg-clip-text font-extrabold flex justify-center items-center gap-2"
+          >BioBlue <span
+            class="text-xs rounded-md bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white px-2 py-1 font-semibold"
+            >DEMO</span
+          ></span
         >
-          <p class="text-xl font-bold">
-            {formatDate(date)}
-          </p>
-        </div>
+      </div>
 
-        <!-- Start Content -->
-        <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Oxigenación</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">95</span><span class="text-3xl">%</span>
-            </p>
-          </div>
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Salinidad</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">95</span><span class="text-3xl">%</span>
-            </p>
-          </div>
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Agua</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">95</span><span class="text-3xl">m³</span>
-            </p>
-          </div>
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Crustáceos (unidad)</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">14</span>
-            </p>
-          </div>
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Días</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">21</span>
-            </p>
-          </div>
-          <div
-            class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
-          >
-            <p class="text-xl font-medium">Biofloc</p>
-            <p class="absolute bottom-5 right-5 text-7xl">
-              <span id="oxygen">95</span><span class="text-3xl">m²</span>
-            </p>
-          </div>
-        </div>
-        <!-- GRAPH CONTAINER -->
-        <div class="grid grid-cols-2 gap-6">
-          <!--  GRAPH 1 -->
-          <div class="flex flex-col justify-center items-center text-xl">
-            Oxigenación
-            <canvas id="first-chart"></canvas>
-          </div>
-          <!--  END GRAPH 1 -->
-
-          <!--  GRAPH 2 -->
-          <div class="flex flex-col justify-center items-center text-xl">
-            Graph name
-            <canvas id="second-chart"></canvas>
-          </div>
-          <!--  END GRAPH 2 -->
-        </div>
-        <!-- ENDGRAPH CONTAINER -->
-      </main>
-      <!-- Main footer -->
-      <footer
-        class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 w-full text-gray-600"
-      >
-        <span class="flex justify-center items-center gap-2">
-          <svg
+      <!-- Navbar right -->
+      <div class="relative flex items-center space-x-3 gap-4">
+        <a
+          href="/login"
+          class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100 mr-1"
+          ><svg
             xmlns="http://www.w3.org/2000/svg"
-            class="animate-spin w-6 h-6"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-rotate-clockwise"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-logout"
             ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"></path></svg
-          ><span id="updateSpan"></span></span
+              d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+            ></path><path d="M9 12h12l-3 -3"></path><path d="M18 15l3 -3"
+            ></path></svg
+          >Salir</a
         >
-        <div>BioBlue &copy; {date.getFullYear()}</div>
-      </footer>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1 overflow-y-auto p-3">
+    <!-- Main content header -->
+    <div
+      class="flex flex-col items-start justify-between space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
+    >
+      <p class="text-xl font-bold">
+        {formatDate(date)}
+      </p>
+    </div>
+
+    <!-- Start Content -->
+    <div class="grid gap-5 my-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Oxigenación</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">95</span><span class="text-3xl">%</span>
+        </p>
+      </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Salinidad</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">95</span><span class="text-3xl">%</span>
+        </p>
+      </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Agua</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">95</span><span class="text-3xl">m³</span>
+        </p>
+      </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Crustáceos (unidad)</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">14</span>
+        </p>
+      </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Días</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">21</span>
+        </p>
+      </div>
+      <div
+        class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+      >
+        <p class="text-xl font-medium">Biofloc</p>
+        <p class="absolute bottom-5 right-5 text-7xl">
+          <span id="oxygen">95</span><span class="text-3xl">m²</span>
+        </p>
+      </div>
+    </div>
+    <!-- GRAPH CONTAINER -->
+    <div class="grid grid-cols-2 grid-rows-2 gap-6">
+      <!--  GRAPH 1 -->
+      <div class="flex flex-col justify-center items-center text-xl">
+        Oxigenación
+        <div id="firstChart" class="w-full h-full"></div>
+      </div>
+      <!--  END GRAPH 1 -->
+
+      <!--  GRAPH 2 -->
+      <div class="flex flex-col justify-center items-center text-xl">
+        Graph name
+        <canvas id="second-chart"></canvas>
+      </div>
+      <!--  END GRAPH 2 -->
+    </div>
+    <!-- ENDGRAPH CONTAINER -->
+  </main>
+
+  <!-- Main footer -->
+  <footer
+    class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 w-full text-gray-600"
+  >
+    <span class="flex justify-center items-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="animate-spin w-6 h-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-rotate-clockwise"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"></path></svg
+      ><span id="updateSpan"></span></span
+    >
+    <div>BioBlue &copy; {date.getFullYear()}</div>
+  </footer>
 </div>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
   import { generate } from "src/utils/dashboard.utils";
   import { getDayCount } from "src/utils/dashboard.utils";
@@ -187,10 +186,18 @@ import { formatDate } from "src/utils/dashboard.utils";
     }
   }, 1000);
   // firstChart
-  new Chart(firstChart, {
-    type: "line",
-    data: {
-      labels: [
+  var options = {
+    chart: {
+      type: "line",
+    },
+    series: [
+      {
+        name: "% diario",
+        data: [95, 96, 96, 97, 98, 97, 97],
+      },
+    ],
+    xaxis: {
+      categories: [
         "Domingo",
         "Lunes",
         "Martes",
@@ -199,41 +206,10 @@ import { formatDate } from "src/utils/dashboard.utils";
         "Viernes",
         "Sábado",
       ],
-      datasets: [
-        {
-          label: "% diario",
-          data: [95, 96, 96, 97, 98, 97, 97],
-          borderWidth: 3,
-        },
-      ],
     },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: false,
-        },
-      },
-    },
-  });
-  // secondChart
-  new Chart(secondChart, {
-    type: "bar",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  };
+
+  let chart = new ApexCharts(document.querySelector("#firstChart"), options);
+
+  chart.render();
 </script>
