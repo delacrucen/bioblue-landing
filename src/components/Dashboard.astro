@@ -1,6 +1,5 @@
 ---
 const date = new Date();
-import { interval } from "./utils/dashboard.utils";
 ---
 
 <div>
@@ -25,7 +24,7 @@ import { interval } from "./utils/dashboard.utils";
             <!-- <p>Actualización en 5...</p> -->
             <a
               href="/login"
-              class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100"
+              class="flex gap-1 bg-gradient-to-r from-sky-700 via-sky-500 to-sky-700 text-white py-2 px-4 rounded-md hover:opacity-90 scale-75 md:scale-100 mr-1"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -51,7 +50,6 @@ import { interval } from "./utils/dashboard.utils";
           <div
             class="flex flex-col items-start justify-between pb-6 space-y-4 lg:items-center lg:space-y-0 lg:flex-row"
           >
-            <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
           </div>
 
           <!-- Start Content -->
@@ -66,15 +64,67 @@ import { interval } from "./utils/dashboard.utils";
                 <span id="oxygen">95</span>%
               </p>
             </div>
-            <div class="bg-red-50">asd</div>
-            <div class="bg-red-50">asd</div>
-            <div class="bg-red-50">asd</div>
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Salinidad</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">95</span>%
+              </p>
+            </div>
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Agua (por m3)</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">95</span>%
+              </p>
+            </div>
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Crustáceos (unidad)</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">14</span>
+              </p>
+            </div>
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Días</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">21</span>
+              </p>
+            </div>
+            <div
+              class="rounded-md border h-48 p-4 hover:scale-[1.03] transition-all relative"
+            >
+              <p class="text-xl font-medium">Biofloc (por m2)</p>
+              <p class="absolute bottom-5 right-5 text-7xl">
+                <span id="oxygen">95</span>
+              </p>
+            </div>
           </div>
         </main>
         <!-- Main footer -->
         <footer
-          class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14"
+          class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14 absolute bottom-0 w-full text-gray-600"
         >
+          <span class="flex justify-center items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="animate-spin w-6 h-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-rotate-clockwise"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"></path></svg
+            ><span id="updateSpan"></span></span
+          >
           <div>BioBlue &copy; {date.getFullYear()}</div>
         </footer>
       </header>
@@ -82,20 +132,37 @@ import { interval } from "./utils/dashboard.utils";
   </div>
 </div>
 
-<script
-  src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js"
-  defer></script>
 <script>
-  const setup = () => {
-    return {
-      loading: true,
-      isSidebarOpen: false,
-      toggleSidbarMenu() {
-        this.isSidebarOpen = !this.isSidebarOpen;
-      },
-      isSettingsPanelOpen: false,
-      isSearchBoxOpen: false,
-    };
-  };
+  import { generate } from "src/utils/dashboard.utils";
+  import { getDayCount } from "src/utils/dashboard.utils";
+
+  const startDate = new Date("2024-03-01");
+  const dayCount = getDayCount(startDate);
+
+  //text elements
   const oxygen = document.getElementById("oxygen");
+  const updateSpan = document.getElementById("updateSpan");
+
+  //5 seconds countdown
+  let count = 5;
+  const interval = setInterval(() => {
+    if (count > 0) {
+      //Pre 5 secs
+      if (updateSpan) {
+        updateSpan.textContent = `Actualizando en ${count}`;
+        updateSpan?.classList.remove("text-green-600");
+      }
+      count--;
+    } else {
+      // 5 secs
+      const randomNumber = generate(90, 10);
+      if (oxygen) oxygen.textContent = `${Number(randomNumber)}`;
+      console.log("Countdown finished, restarting...");
+      if (updateSpan) {
+        updateSpan.textContent = `Actualizado`;
+        updateSpan?.classList.add("text-green-600");
+      }
+      count = 5; // Reset the count to 5
+    }
+  }, 1000);
 </script>
